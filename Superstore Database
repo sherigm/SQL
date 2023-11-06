@@ -25,18 +25,21 @@ VALUES
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
-
+#Extraction of the data for a visual.
 SELECT *
 FROM superstore
 ORDER BY category;
 
+#Show a statistic of items and pricing in descending order.
 SELECT item_name, price
 FROM superstore
 ORDER BY price desc;
 
+#Show the average price of items within the superstore.
 SELECT avg(price)
 FROM superstore;
 
+#Show a sum about the price in the category of "Furnishings".
 SELECT sum(price)
 FROM superstore
 WHERE category='Furnishings';
