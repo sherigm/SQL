@@ -1,0 +1,35 @@
+CREATE TABLE customers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT);
+    
+INSERT INTO customers (name, email) VALUES ("Doctor Who", "doctorwho@timelords.com");
+INSERT INTO customers (name, email) VALUES ("Harry Potter", "harry@potter.com");
+INSERT INTO customers (name, email) VALUES ("Captain Awesome", "captain@awesome.com");
+
+CREATE TABLE orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    customer_id INTEGER,
+    item TEXT,
+    price REAL);
+
+INSERT INTO orders (customer_id, item, price)
+    VALUES (1, "Sonic Screwdriver", 1000.00);
+INSERT INTO orders (customer_id, item, price)
+    VALUES (2, "High Quality Broomstick", 40.00);
+INSERT INTO orders (customer_id, item, price)
+    VALUES (1, "TARDIS", 1000000.00);
+
+## Display of name, email, item, and price of orders made, using LEFT OUTER JOIN
+SELECT c.name, c.email, o.item,o.price
+FROM customers c
+LEFT OUTER JOIN orders o
+ON c.id=o.customer_id;
+
+## Sorting the rows according to the total money spent, from the most spent to the least spent
+SELECT c.name,c.email,sum(o.price) as spent
+FROM customers c
+LEFT OUTER JOIN orders o
+ON c.id=o.customer_id
+GROUP BY c.name
+ORDER BY spent desc;
